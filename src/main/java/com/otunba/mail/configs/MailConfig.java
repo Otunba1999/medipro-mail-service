@@ -16,9 +16,10 @@ public class MailConfig {
     @Value("${server.http.port:8080}")// Default http port
     private int httpPort;
 
+    @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.gmail.com");
+        mailSender.setHost("smtp-mail.outlook.com");
         mailSender.setPort(587);
         mailSender.setUsername(System.getenv("MAIL_USERNAME"));
         mailSender.setPassword(System.getenv("PASSWORD"));

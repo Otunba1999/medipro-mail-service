@@ -2,7 +2,7 @@ spring:
   application:
       name: medipro-mail-service
   mail:
-    host: smtp.gmail.com
+    host: smtp-mail.outlook.com
     port: 587
     username: ${MAIL_USERNAME}
     password: ${PASSWORD}
@@ -14,13 +14,13 @@ spring:
             enable: true
 
 server:
-    ssl:
-      enabled: true
-      key-store: classpath:mail_service.p12
-      key-store-password: Ladi.com1
-      key-store-type: PKCS12
-      trust-store: classpath:ca.crt
-      trust-store-password: Ladi.com1
-      client-auth: need
+#    ssl:
+#      enabled: true
+#      key-store: classpath:mail_service.p12
+#      key-store-password: Ladi.com1
+#      key-store-type: PKCS12
+#      trust-store: classpath:ca.crt
+#      trust-store-password: Ladi.com1
+#      client-auth: need
     port: 8282
 

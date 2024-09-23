@@ -23,6 +23,7 @@ public class EmailService implements IEmailService {
             throw new MessageException("Email sending failed, make sure to provide a valid email address, subject and content");
         try {
             SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom(System.getenv("MAIL_USERNAME"));
             message.setTo(to);
             message.setSubject(subject);
             message.setText(content);
