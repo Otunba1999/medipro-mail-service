@@ -1,20 +1,20 @@
 # Build stage
-FROM eclipse-temurin:17-jdk-alpine AS builder
+FROM maven:3.8.5-openjdk-17 AS build
 # Set working directory
 WORKDIR /app
 COPY . .
 #Install depndency and build the application
-RUN ./mvnw install -DskipTests
+RUN mvn clean package -DskipTests
 #Copy the built jar file in the package
-COPY target/*.jar app.jar
+#COPY target/medipro-mail-service-0.0.1-SNAPSHOT.jar mail-service.jar
 # Package stage
 #Use minimal JRE image for the final image
-FROM eclipse-temurin:17-jre-alpine
+FROM openjdk:17-jdk-slim
 # Set working directory in the final container
 WORKDIR /app
 #Copy the jar file from the builder stage
-COPY --from=builder /app/app.jar .
+COPY --from=build /app/target/medipro-mail-service-0.0.1-SNAPSHOT.jar  mail-service.jar
 #Expose port 8282 for the application
 EXPOSE 8282
 #Command to run the springboot application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "mail-service.jar"]

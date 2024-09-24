@@ -6,6 +6,7 @@ import com.otunba.mail.services.IEmailService;
 //import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,13 +23,13 @@ public class MailSenderController {
 
     @PostMapping("/send-simple-message")
     @Operation(summary = "Send a simple message to a email address")
-    public ResponseEntity<String> sendMail(@RequestBody MailRequest mailRequest) {
+    public ResponseEntity<String> sendMail(@Valid @RequestBody MailRequest mailRequest) {
          var result = emailService.sendSimpleMail(mailRequest.to(), mailRequest.subject(), mailRequest.content());
          return ResponseEntity.ok(result);
     }
     @PostMapping("/send-html-message")
     @Operation(summary = "Send a HTML content to a email address")
-    public ResponseEntity<String> sendHtmlMail(@RequestBody MailRequest mailRequest)  {
+    public ResponseEntity<String> sendHtmlMail(@Valid @RequestBody MailRequest mailRequest)  {
         var result = emailService.sendHtmlMail(mailRequest.to(), mailRequest.subject(), mailRequest.content());
         return ResponseEntity.ok(result);
     }
