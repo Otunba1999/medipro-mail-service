@@ -6,6 +6,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,24 +14,25 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class EmailService implements IEmailService {
 
-    private final JavaMailSender mailSender;
+    @Autowired
+    private   JavaMailSender mailSender;
     @Override
-    public String  sendSimpleMail(String to, String subject, String content) {
-        if(to == null || to.isEmpty() || subject == null || subject.isEmpty() || content == null || content.isEmpty())
-            throw new MessageException("Email sending failed, make sure to provide a valid email address, subject and content");
+    public String  sendSimpleMail(String recipient, String subject, String content) {
+        if(recipient == null || recipient.isEmpty() || subject == null || subject.isEmpty() || content == null || content.isEmpty())
+            throw new MessageException("Email sending failed, make sure recipient provide a valid email address, subject and content");
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom(System.getenv("MAIL_USERNAME"));
-            message.setTo(to);
+//            message.setFrom(System.getenv("USERNAME"));
+            message.setTo(recipient);
             message.setSubject(subject);
             message.setText(content);
             mailSender.send(message);
             return "Email sent successfully";
         } catch (MailException e) {
-            throw new MessageException("Unable to send email , make sure to provide a valid email address, subject and content\n" + e.getMessage());
+            throw new MessageException("Unable to send email , make sure recipient provide a valid email address, subject and content\n" + e.getMessage());
         }
     }
 

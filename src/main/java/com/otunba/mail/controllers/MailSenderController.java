@@ -24,13 +24,13 @@ public class MailSenderController {
     @PostMapping("/send-simple-message")
     @Operation(summary = "Send a simple message to a email address")
     public ResponseEntity<String> sendMail(@Valid @RequestBody MailRequest mailRequest) {
-         var result = emailService.sendSimpleMail(mailRequest.to(), mailRequest.subject(), mailRequest.content());
+         var result = emailService.sendSimpleMail(mailRequest.recipient(), mailRequest.subject(), mailRequest.content());
          return ResponseEntity.ok(result);
     }
     @PostMapping("/send-html-message")
     @Operation(summary = "Send a HTML content to a email address")
     public ResponseEntity<String> sendHtmlMail(@Valid @RequestBody MailRequest mailRequest)  {
-        var result = emailService.sendHtmlMail(mailRequest.to(), mailRequest.subject(), mailRequest.content());
+        var result = emailService.sendHtmlMail(mailRequest.recipient(), mailRequest.subject(), mailRequest.content());
         return ResponseEntity.ok(result);
     }
 }

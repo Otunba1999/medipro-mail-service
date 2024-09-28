@@ -5,8 +5,6 @@ WORKDIR /app
 COPY . .
 #Install depndency and build the application
 RUN mvn clean package -DskipTests
-#Copy the built jar file in the package
-#COPY target/medipro-mail-service-0.0.1-SNAPSHOT.jar mail-service.jar
 # Package stage
 #Use minimal JRE image for the final image
 FROM openjdk:17-jdk-slim
