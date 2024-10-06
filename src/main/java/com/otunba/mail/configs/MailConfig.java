@@ -15,28 +15,6 @@ public class MailConfig {
     @Value("${server.http.port:8080}")// Default http port
     private int httpPort;
 
-//    @Bean
-//    public JavaMailSender getJavaMailSender() {
-//        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-//        mailSender.setHost("smtp.gmail.com");
-//        mailSender.setPort(587);
-//        String username = System.getenv("MAIL_USERNAME");
-//        String password = System.getenv("PASSWORD");
-//        if (username == null || password == null) {
-//            throw new IllegalArgumentException("SMTP credentials must be set in environment variables.");
-//        }
-//        mailSender.setUsername(username);
-//        mailSender.setPassword(password);
-//        Properties props = mailSender.getJavaMailProperties();
-//        props.put("mail.transport.protocol", "smtp");
-//        props.put("mail.smtp.auth", "true");
-//        props.put("mail.smtp.starttls.enable", "true");
-//        props.put("mail.debug", "true"); // Set to true only during development
-//        props.put("mail.smtp.connectiontimeout", "10000"); // 10 seconds
-//        props.put("mail.smtp.timeout", "10000"); // 10 seconds
-//        props.put("mail.smtp.writetimeout", "10000"); // 10 seconds
-//        return mailSender;
-//    }
     @Bean
     public WebServerFactoryCustomizer<TomcatServletWebServerFactory> httpCustomizer() {
         return factory -> {

@@ -2,8 +2,6 @@ package com.otunba.mail.controllers;
 
 import com.otunba.mail.dtos.MailRequest;
 import com.otunba.mail.services.IEmailService;
-//import io.swagger.v3.oas.annotations.Operation;
-//import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
