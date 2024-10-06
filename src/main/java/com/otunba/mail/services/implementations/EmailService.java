@@ -30,7 +30,7 @@ public class EmailService implements IEmailService {
             message.setTo(recipient);
             message.setSubject(subject);
             message.setText(content);
-            mailSender.send(message);
+            mailSender.send(messages);
             return "Email sent successfully";
         } catch (MailException e) {
             log.error("Error sending email", e);
